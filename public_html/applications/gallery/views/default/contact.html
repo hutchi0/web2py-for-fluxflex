@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+
+<h1>Contact</h1>
+<div>
+<img src={{=URL('download',args=personal.image)}} width=200 />
+<br><br><br>
+<h3>
+For further information please contact
+{{=" "+personal.first_name+" "}}
+at
+<br>
+<br>
+{{=personal.email}}
+</h3>
+</div>

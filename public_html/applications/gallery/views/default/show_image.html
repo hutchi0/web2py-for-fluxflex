@@ -1,0 +1,39 @@
+<head>
+<title> 
+  </title>
+  
+  
+  
+  
+</head>
+{{extend 'layout.html'}}
+<table WIDTH="200">
+<tr>
+<td>
+<form method=post action={{=URL("previous_image", args=request.args(0),vars=request.vars)}}>
+ <input type="submit" value="Previous" />
+</form>
+</td>
+
+<td>
+<form method=post action={{=URL("category", args=image.show,vars=request.vars)}}>
+ <input type="submit" value="Back to Gallery" />
+</form>
+</td>
+
+<td>
+<form method=post action={{=URL("next_image", args=request.args(0),vars=request.vars)}}>
+ <input type="submit" value="Next" />
+</form>
+</td>
+</tr>
+</table>
+<br>
+
+
+<h1>{{=image.title}}</h1>
+<h3>{{=image.size or " "}}</h3>
+<h3>{{=image.media or " "}}</h3>
+
+<img src="{{=URL('download',args=image.file)}}" alt="x" align="left" border=0 padding=0 height=500/>
+

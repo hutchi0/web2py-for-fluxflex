@@ -1,0 +1,115 @@
+timestamp: 2011-10-17T20:23:59.424000
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512)
+);
+success!
+timestamp: 2011-10-17T20:23:59.584000
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-10-17T20:23:59.723000
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2011-10-17T20:23:59.828000
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2011-10-17T20:24:00.003000
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2011-10-17T20:24:00.163000
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    url CHAR(512),
+    uuid CHAR(512)
+);
+success!
+timestamp: 2011-10-17T20:24:00.260000
+CREATE TABLE show(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2011-10-17T20:24:00.409000
+CREATE TABLE image(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    show INTEGER REFERENCES show(id) ON DELETE CASCADE,
+    title CHAR(512),
+    file CHAR(512)
+);
+success!
+timestamp: 2011-10-25T18:43:53.779000
+ALTER TABLE image ADD media CHAR(512);
+timestamp: 2011-10-25T18:43:53.998000
+ALTER TABLE image ADD price CHAR(512);
+timestamp: 2011-10-25T18:43:54.242000
+ALTER TABLE image ADD size CHAR(512);
+timestamp: 2011-10-25T19:29:34.680000
+CREATE TABLE home(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    image CHAR(512),
+    description CHAR(2096)
+);
+success!
+timestamp: 2011-10-25T19:47:45.757000
+ALTER TABLE home ADD biography CHAR(2096);
+timestamp: 2011-10-26T12:29:27.233000
+ALTER TABLE image ADD thumbnail CHAR(512);
+timestamp: 2011-10-26T13:47:00.703000
+ALTER TABLE image ADD thumb CHAR(512);
+timestamp: 2011-11-09T18:50:49.302000
+CREATE TABLE personal(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(512),
+    surname CHAR(512),
+    image CHAR(512),
+    description TEXT,
+    biography TEXT,
+    email CHAR(512)
+);
+success!
+timestamp: 2011-11-21T18:05:34.856000
+ALTER TABLE auth_user ADD registration_id CHAR(512);
+timestamp: 2011-12-06T10:22:07.581000
+ALTER TABLE auth_cas ADD service CHAR(512);
+timestamp: 2011-12-06T10:22:07.620000
+ALTER TABLE auth_cas ADD renew CHAR(1);
+timestamp: 2011-12-06T10:22:07.624000
+ALTER TABLE auth_cas ADD ticket CHAR(512);
+timestamp: 2011-12-10T11:08:59.781000
+CREATE TABLE plugin_ckeditor_upload(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(255),
+    filename CHAR(255),
+    length INTEGER,
+    mime_type CHAR(128),
+    upload CHAR(512)
+);
+success!
